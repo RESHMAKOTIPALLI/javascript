@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handbags</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .filter-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-section input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-name {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .product-description {
+            margin: 10px 0;
+        }
+        .product-price {
+            font-size: 1.2em;
+            color: #e60023;
+            margin: 5px 0;
+        }
+        .product-rating {
+            font-size: 1em;
+            color: #ffa500;
+        }
+    </style>
+</head>
+<body>
+    <div class="filter-section">
+        <h2>Filter Products</h2>
+        <label for="min-price">Min Price: </label>
+        <input type="number" id="min-price" placeholder="0">
+        <label for="max-price">Max Price: </label>
+        <input type="number" id="max-price" placeholder="1000">
+        <button onclick="filterProducts()">Apply Filter</button>
+    </div>
+
+    <div class="grid-container">
+
+        <div class="product" data-price="99.99">
+            <img src="https://cdn.pixabay.com/photo/2014/09/13/15/38/handbag-444171_1280.jpg" alt="Handbag 1">
+            <div class="product-info">
+                <h2 class="product-name">Elegant Handbag</h2>
+                <p class="product-description">A classy and elegant handbag perfect for any occasion.</p>
+                <p class="product-price">$99.99</p>
+                <p class="product-rating">★★★★☆</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="89.99">
+            <img src="https://cdn.pixabay.com/photo/2017/08/20/11/39/handbag-2661412_640.jpg" alt="Handbag 2">
+            <div class="product-info">
+                <h2 class="product-name">Chic Handbag</h2>
+                <p class="product-description">Stylish and chic, this handbag will make you stand out.</p>
+                <p class="product-price">$89.99</p>
+                <p class="product-rating">★★★☆☆</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="79.99">
+            <img src="https://cdn.pixabay.com/photo/2017/05/30/08/33/handbag-2356179_640.jpg" alt="Handbag 3">
+            <div class="product-info">
+                <h2 class="product-name">Casual Handbag</h2>
+                <p class="product-description">Perfect for daily use with a casual look.</p>
+                <p class="product-price">$79.99</p>
+                <p class="product-rating">★★★☆☆</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="109.99">
+            <img src="https://cdn.pixabay.com/photo/2017/10/11/21/03/red-2842438_640.jpg" alt="Handbag 4">
+            <div class="product-info">
+                <h2 class="product-name">Red Hot Handbag</h2>
+                <p class="product-description">Make a bold statement with this vibrant red handbag.</p>
+                <p class="product-price">$109.99</p>
+                <p class="product-rating">★★★★☆</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="119.99">
+            <img src="https://cdn.pixabay.com/photo/2018/08/12/08/43/craft-3600342_640.jpg" alt="Handbag 5">
+            <div class="product-info">
+                <h2 class="product-name">Crafty Handbag</h2>
+                <p class="product-description">Handcrafted with care, this handbag is a work of art.</p>
+                <p class="product-price">$119.99</p>
+                <p class="product-rating">★★★★★</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="89.99">
+            <img src="https://cdn.pixabay.com/photo/2016/02/11/20/21/bag-1194459_640.jpg" alt="Handbag 6">
+            <div class="product-info">
+                <h2 class="product-name">Classic Handbag</h2>
+                <p class="product-description">A timeless classic that complements any outfit.</p>
+                <p class="product-price">$89.99</p>
+                <p class="product-rating">★★★★☆</p>
+            </div>
+        </div>
+
+    </div>
+    <script>
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(product => {
+                const price = parseFloat(product.getAttribute('data-price'));
+                
+                if (price >= minPrice && price <= maxPrice) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

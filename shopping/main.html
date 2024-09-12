@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOPPING</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, rgb(121, 17, 84), #f6a);
+        }
+        .category-container {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            max-width: 1200px;
+            gap: 30px;
+        }
+        .category-card {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(7, 141, 202, 0.582);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            transform: scale(1.05);
+        }
+        .category-card h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .category-card a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #000;
+            color: #fff;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .category-card a:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="category-container">
+        <div class="category-card">
+            <h2>Men's Shopping</h2>
+            <a href="mens.html">Shop Now</a>
+        </div>
+        <div class="category-card">
+            <h2>Women's Shopping</h2>
+            <a href="womens.html">Shop Now</a>
+        </div>
+        <div class="category-card">
+            <h2>Kids' Shopping</h2>
+            <a href="kids.html">Shop Now</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfume Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .filter-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-section input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .product-price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .product-rating {
+            margin: 10px 0;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Perfume Store</h1>
+
+    <div class="filter-section">
+        <h2>Filter Products</h2>
+        <label for="min-price">Min Price: </label>
+        <input type="number" id="min-price" placeholder="0">
+        <label for="max-price">Max Price: </label>
+        <input type="number" id="max-price" placeholder="1000">
+        <button onclick="filterProducts()">Apply Filter</button>
+    </div>
+
+    <div class="product-grid" id="product-grid">
+        <div class="product-card" data-price="640">
+            <img src="https://cdn.pixabay.com/photo/2017/03/14/11/39/perfume-2142817_640.jpg" alt="Perfume 1">
+            <div class="product-name">Elegant Rose Perfume</div>
+            <div class="product-description">A soft floral scent perfect for romantic evenings.</div>
+            <div class="product-price">$640</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2017/08/02/23/40/perfume-2574073_1280.jpg" alt="Perfume 2">
+            <div class="product-name">Classic Lavender Perfume</div>
+            <div class="product-description">A timeless fragrance with lavender notes.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2024/05/09/21/47/ai-generated-8751912_1280.png" alt="Perfume 3">
+            <div class="product-name">Mystic Forest Perfume</div>
+            <div class="product-description">A blend of woody and earthy tones for a refreshing experience.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2016/06/15/22/22/still-life-1460067_1280.jpg" alt="Perfume 4">
+            <div class="product-name">Ocean Breeze Perfume</div>
+            <div class="product-description">A crisp, clean fragrance reminiscent of the sea.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2024/04/29/13/54/ai-generated-8727927_1280.jpg" alt="Perfume 5">
+            <div class="product-name">Fresh Morning Mist Perfume</div>
+            <div class="product-description">A light, refreshing scent perfect for daytime wear.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2018/08/27/15/09/safe-3635196_1280.jpg" alt="Perfume 6">
+            <div class="product-name">Saffron Luxury Perfume</div>
+            <div class="product-description">A rare and exotic scent combining the richness of saffron and spices.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+\        <div class="product-card" data-price="803">
+            <img src="https://cdn.pixabay.com/photo/2023/06/01/06/21/perfume-8032808_1280.jpg" alt="Perfume 7">
+            <div class="product-name">Desert Oud Perfume</div>
+            <div class="product-description">A luxurious oud fragrance inspired by the mysteries of the desert.</div>
+            <div class="product-price">$803</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+        <div class="product-card" data-price="1280">
+            <img src="https://cdn.pixabay.com/photo/2018/03/12/17/23/perfume-3220296_1280.jpg" alt="Perfume 8">
+            <div class="product-name">Golden Sunset Perfume</div>
+            <div class="product-description">A warm, rich fragrance with amber and honey notes, ideal for evenings.</div>
+            <div class="product-price">$1280</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+    </div>
+
+    <script>
+        function filterProducts() {
+            const minPrice = document.getElementById('min-price').value;
+            const maxPrice = document.getElementById('max-price').value;
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const price = parseInt(product.getAttribute('data-price'));
+                
+                if ((minPrice === "" || price >= minPrice) && (maxPrice === "" || price <= maxPrice)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

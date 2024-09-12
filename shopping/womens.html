@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women's Clothing Sub-Categories</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fafafa;
+            margin: 0;
+            padding: 20px;
+        }
+    
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+    
+        .category-card {
+            flex: 1 1 calc(33.33% - 40px);
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            max-width: 350px;
+        } 
+    
+        .category-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+    
+        .category-card h3 {
+            padding: 20px;
+            margin: 0;
+            font-size: 24px;
+            text-align: center;
+            background-color: #ff4081;
+            color: white;
+            font-weight: 600;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+        }
+    
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+    
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+    
+        @media (max-width: 768px) {
+            .category-card {
+                flex: 1 1 calc(50% - 20px);
+            }
+        }
+    
+        @media (max-width: 576px) {
+            .category-card {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="handbags.html" class="category-card">
+            <img src="https://cdn.pixabay.com/photo/2015/01/15/15/02/handbag-600398_960_720.jpg" alt="Handbags">
+            <h3>Handbags</h3>
+        </a>
+        <a href="perfumes.html" class="category-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQn6QeFhQXtKVBqyKeZ0gqHLrl6sjmEDAR9TA&s" alt="Perfumes">
+            <h3>Perfumes</h3>
+        </a>
+        <a href="tops.html" class="category-card">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp-hELLJSr5b1Q2zESn0M6fxbc-F7lWUoDlw&s" alt="Tops">
+            <h3>Tops</h3>
+        </a>
+    </div>
+</body>
+</html>

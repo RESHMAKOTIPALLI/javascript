@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids' Products</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .filter-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-section input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+        }
+        .product-info {
+            padding: 15px;
+        }
+        .product-name {
+            font-size: 1.5em;
+            margin: 0;
+        }
+        .product-description {
+            margin: 10px 0;
+            color: #555;
+        }
+        .product-price {
+            font-size: 1.2em;
+            color: #e60023;
+            margin: 5px 0;
+        }
+        .product-rating {
+            font-size: 1em;
+            color: #ffa500;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="filter-section">
+        <h2>Filter Products</h2>
+        <label for="min-price">Min Price: </label>
+        <input type="number" id="min-price" placeholder="0">
+        <label for="max-price">Max Price: </label>
+        <input type="number" id="max-price" placeholder="1000">
+        <button onclick="filterProducts()">Apply Filter</button>
+    </div>
+
+    <div class="grid-container">
+
+        <div class="product" data-price="45.00">
+            <img src="https://cdn.pixabay.com/photo/2021/09/13/05/34/kid-6620283_640.jpg" alt="Kid in Blue Jacket">
+            <div class="product-info">
+                <h2 class="product-name">Blue Jacket</h2>
+                <p class="product-price">$45.00</p>
+                <p class="product-rating">★★★☆☆</p>
+                <p class="product-description">A warm and stylish blue jacket perfect for cool weather.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="65.00">
+            <img src="https://cdn.pixabay.com/photo/2015/12/08/05/58/ice-skates-1082514_640.jpg" alt="Ice Skates">
+            <div class="product-info">
+                <h2 class="product-name">Ice Skates</h2>
+                <p class="product-price">$65.00</p>
+                <p class="product-rating">★★★★☆</p>
+                <p class="product-description">High-quality ice skates for kids who love skating.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="35.00">
+            <img src="https://cdn.pixabay.com/photo/2021/08/22/15/39/kid-6565461_640.jpg" alt="Kid in Playground">
+            <div class="product-info">
+                <h2 class="product-name">Playground Outfit</h2>
+                <p class="product-price">$35.00</p>
+                <p class="product-rating">★★★☆☆</p>
+                <p class="product-description">Comfortable outfit for kids to play in the park or playground.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="20.00">
+            <img src="https://cdn.pixabay.com/photo/2021/06/14/15/19/kid-6336155_640.jpg" alt="Kid with Hat">
+            <div class="product-info">
+                <h2 class="product-name">Kid's Hat</h2>
+                <p class="product-price">$20.00</p>
+                <p class="product-rating">★★★★☆</p>
+                <p class="product-description">Cute and cozy hat for kids to keep warm during winter.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="50.00">
+            <img src="https://cdn.pixabay.com/photo/2021/07/11/19/07/girl-6404712_1280.jpg" alt="Girl in Summer Dress">
+            <div class="product-info">
+                <h2 class="product-name">Summer Dress</h2>
+                <p class="product-price">$50.00</p>
+                <p class="product-rating">★★★★★</p>
+                <p class="product-description">A lovely summer dress perfect for sunny days.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="40.00">
+            <img src="https://cdn.pixabay.com/photo/2015/04/24/20/58/girl-738303_640.jpg" alt="Girl in Pink Dress">
+            <div class="product-info">
+                <h2 class="product-name">Pink Dress</h2>
+                <p class="product-price">$40.00</p>
+                <p class="product-rating">★★★☆☆</p>
+                <p class="product-description">Charming pink dress suitable for any occasion.</p>
+            </div>
+        </div>
+
+        <div class="product" data-price="30.00">
+            <img src="https://cdn.pixabay.com/photo/2022/06/07/15/56/child-7248693_640.jpg" alt="Child Playing">
+            <div class="product-info">
+                <h2 class="product-name">Playful Outfit</h2>
+                <p class="product-price">$30.00</p>
+                <p class="product-rating">★★★☆☆</p>
+                <p class="product-description">Fun and playful outfit for active children.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function filterProducts() {
+            const minPrice = parseFloat(document.getElementById('min-price').value) || 0;
+            const maxPrice = parseFloat(document.getElementById('max-price').value) || Infinity;
+            const products = document.querySelectorAll('.product');
+            
+            products.forEach(product => {
+                const price = parseFloat(product.getAttribute('data-price'));
+                
+                if (price >= minPrice && price <= maxPrice) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

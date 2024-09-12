@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fashion Store</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .filter-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .filter-section input[type="number"] {
+            width: 80px;
+            padding: 5px;
+            margin-right: 10px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+        .product-card img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .product-name {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        .product-price {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .product-rating {
+            margin: 10px 0;
+            color: #f39c12;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fashion Store</h1>
+
+   <div class="filter-section">
+        <h2>Filter Products</h2>
+        <label for="min-price">Min Price: </label>
+        <input type="number" id="min-price" placeholder="0">
+        <label for="max-price">Max Price: </label>
+        <input type="number" id="max-price" placeholder="1000">
+        <button onclick="filterProducts()">Apply Filter</button>
+    </div>
+
+   <div class="product-grid" id="product-grid">
+      <div class="product-card" data-price="750">
+            <img src="https://cdn.pixabay.com/photo/2024/05/25/05/34/ai-generated-8786356_1280.jpg" alt="Fashion 1">
+            <div class="product-name">Starlight Summer Dress</div>
+            <div class="product-description">A beautiful summer dress with starry patterns, perfect for evening outings.</div>
+            <div class="product-price">$750</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+       <div class="product-card" data-price="640">
+            <img src="https://cdn.pixabay.com/photo/2024/01/20/01/50/ai-generated-8520198_640.jpg" alt="Fashion 2">
+            <div class="product-name">Elegant Floral Skirt</div>
+            <div class="product-description">A flowing floral skirt ideal for springtime vibes and comfort.</div>
+            <div class="product-price">$640</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+       <div class="product-card" data-price="420">
+            <img src="https://cdn.pixabay.com/photo/2016/05/22/18/55/woman-1409015_640.jpg" alt="Fashion 3">
+            <div class="product-name">Vintage Chic top</div>
+            <div class="product-description">A classic vintage-style hat, perfect for a stylish afternoon in the sun.</div>
+            <div class="product-price">$420</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+       <div class="product-card" data-price="820">
+            <img src="https://cdn.pixabay.com/photo/2021/09/15/11/34/woman-6626615_640.jpg" alt="Fashion 4">
+            <div class="product-name">Autumn Trench Coat</div>
+            <div class="product-description">A warm and cozy trench coat for chilly autumn walks.</div>
+            <div class="product-price">$820</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+      <div class="product-card" data-price="910">
+            <img src="https://cdn.pixabay.com/photo/2020/10/23/16/50/woman-5679284_1280.jpg" alt="Fashion 5">
+            <div class="product-name">Elegant Evening Gown</div>
+            <div class="product-description">A graceful evening gown for high-class events and elegant dinners.</div>
+            <div class="product-price">$910</div>
+            <div class="product-rating">★★★★★</div>
+        </div>
+
+        <div class="product-card" data-price="380">
+            <img src="https://cdn.pixabay.com/photo/2022/11/12/15/43/reed-7587271_1280.jpg" alt="Fashion 6">
+            <div class="product-name">Beachside Straw top</div>
+            <div class="product-description">A wide-brimmed straw hat, perfect for sunny beach days and casual wear.</div>
+            <div class="product-price">$380</div>
+            <div class="product-rating">★★★★☆</div>
+        </div>
+
+    </div>
+
+    <script>
+        function filterProducts() {
+            const minPrice = document.getElementById('min-price').value;
+            const maxPrice = document.getElementById('max-price').value;
+            const products = document.querySelectorAll('.product-card');
+            
+            products.forEach(product => {
+                const price = parseInt(product.getAttribute('data-price'));
+                
+                if ((minPrice === "" || price >= minPrice) && (maxPrice === "" || price <= maxPrice)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

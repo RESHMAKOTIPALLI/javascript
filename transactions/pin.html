@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIN</title>
+    <style>
+  body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color:lightcyan;
+        }
+        
+        .container {
+         background-color: white;
+         padding: 20px;
+         border-radius: 8px;
+         border: 2px solid black; 
+         box-shadow: 0 0 10px rgb(244, 17, 233);
+         width: 300px;
+         text-align: center;
+        }
+
+        input[type="password"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color:#0d9f5e;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color:#e1b010;
+        }
+
+        .back-button {
+            background-color:#583f5c;
+            color:white;
+        }
+
+        .back-button:hover {
+            background-color: #047083;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+    <div class="Box">
+    <div class="container">
+        <h2> PIN</h2>
+        <input type="password" id="pinInput" placeholder="Enter PIN" required>
+        <button class="back-button" onclick="goBack()">Back to Main</button>
+        <button onclick="verifyPin()">Submit</button>
+        <p id="message"></p>
+    </div>
+    </div>
+    </div>
+
+    <script>
+        function verifyPin() {
+            const pin = document.getElementById('pinInput').value;
+            const message = document.getElementById('message');
+
+            if (pin === '1234') { 
+                localStorage.setItem('authenticated', 'true');
+                const redirectUrl = localStorage.getItem('redirectUrl') || 'account.html';
+                localStorage.removeItem('redirectUrl'); 
+                alert('PIN verified successfully!');
+                window.location.href = redirectUrl;
+            } else {
+                message.textContent = 'Invalid PIN. Please try again.';
+                message.style.color = 'red';
+            }
+        }
+
+        function goBack() {
+            window.location.href = 'main.html';
+        }
+    </script>
+</body>
+</html>
